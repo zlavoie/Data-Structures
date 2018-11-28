@@ -1,0 +1,65 @@
+//Zoe Lavoie
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+public class KnightTourStart implements ActionListener {
+    private final char ConvertToString = ',';
+    private final int size = 8;
+    private KnightGUI display;
+    private Tour t;
+    private Board board;
+    private int n;
+
+    KnightTourStart(){
+      n=0;
+        display = new KnightGUI(this, size, ConvertToString);
+        board = new Board(size);
+       t = new Tour(board);
+         for (int row=0; row<size; row++) {
+            for (int col=0; col<size; col++) {
+              this.setColor(row, col);}}
+         display.Visible();
+         }
+    
+    public void restart(){
+      board = new Board(size);
+       t = new Tour(board);
+         for (int row=0; row<size; row++) {
+            for (int col=0; col<size; col++) {
+              this.setColor(row, col);}}
+         display.Visible();
+    }
+
+    public void actionPerformed(ActionEvent event){
+      if(n>0){
+        n=0;
+        restart();
+      }
+        String [] label = (event.getActionCommand()).split(ConvertToString+"");
+        int row = Integer.parseInt(label[0]); //Gives row to calculate t
+        int col = Integer.parseInt(label[1]); //Gives col to calculate t.... There is probably a better way to do this but nothing I was doing was working
+        CalculateTour(row, col);
+        n++;}
+
+    public void CalculateTour(int startRow, int startCol) { //FINDS THE PATH IN WHICH THE KNIGHT CAN MOVE
+        ArrayList <Coordinate> positions = null;
+        positions = t.FindTour(startRow, startCol); //
+        int Listings = positions.size();
+        int Row2 = 0;
+        int Col2 = 0;
+
+        for (int start=0; start<Listings; start++) {
+            Row2 = positions.get(start).getR(); //recursively runs through the rest of the rows setting the text using ArrayList positions
+            Col2 = positions.get(start).getC();
+            setText(start + 1, Row2, Col2);}}
+
+    public void setColor(int row, int col) { //SETS COLOR
+        display.setBackground(board.getTileColor(row, col), row, col);} //SETS TILE COLOR
+
+    public void setText(int text,int row, int col) { //SETS NUMBER TEXT
+        display.setText(Integer.toString(text), row, col);}
+
+    public static void main(String [] args) {
+     KnightTourStart k = new KnightTourStart(); //Starts the Whole Tour
+     }}

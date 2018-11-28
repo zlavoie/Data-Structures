@@ -1,0 +1,23 @@
+public class Coordinate {
+    int r;
+    int c;
+    int movement;
+    
+    public Coordinate(int r, int c) { //sets row and col initially
+        this.r = r;
+        this.c = c;
+        this.movement = -1; }
+    
+    public Coordinate(int r, int c, int movement) { //Sets row, col, and move
+        this.r = r;
+        this.c = c;
+        this.movement = movement; }
+    
+    public int getR() { //Getter for row
+        return r;}
+    
+    public int getC() { //Getter for Column
+        return c;}
+    
+    public int getMovement() { //Getter for the move
+        return movement; }}

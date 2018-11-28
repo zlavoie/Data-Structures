@@ -1,0 +1,25 @@
+import java.awt.Color;
+
+public class Tile {
+    private Color SetTColor;
+    private boolean hasContent;
+    
+    public Tile(boolean Whites) {
+        hasContent = false;
+
+        if (Whites) {
+            SetTColor = Color.WHITE; }else {
+            SetTColor = Color.RED;}}
+    
+    public Color getColor() {
+        return SetTColor;
+    }
+    
+    public boolean isEmpty() {
+        return !hasContent;
+    }
+    
+    public void place(boolean content) {
+        hasContent = content;
+    }
+}

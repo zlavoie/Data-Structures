@@ -1,0 +1,44 @@
+import java.awt.*;
+import javax.swing.*;
+
+class KnightGUI extends JFrame{
+    private KnightTourStart control;
+    private JButton[][] matrix;
+    private final char seperate;
+    private final int rows;
+    private final int columns;
+    private final int Height = 600;
+    private final int Width = 600;
+    private final int LocationX = 300;
+    private final int LocationY = 0;
+
+    public KnightGUI (KnightTourStart main, int side, char separador){
+        this.control = main;
+        this.rows = side;
+        this.columns = side;
+        this.seperate = separador;
+        matrix = new JButton[rows][ columns];
+        Everything();}
+    
+    public void setBackground(Color color, int row, int col) {
+        matrix[row][col].setBackground(color);} //Sets the background color for tile
+    
+    public void setText(String text, int row, int col) {
+        matrix[row][col].setText(text);} //Sets numbers on tiles
+    
+    public void Everything(){
+        setResizable(false);
+        setSize(Width, Height); //Sets Size of Board nxn
+        setLocation(LocationX, LocationY); //Sets Location
+        setDefaultCloseOperation(EXIT_ON_CLOSE); //Allows the Frame To Close
+        setLayout(new GridLayout(rows, columns)); //Create Grid For All The Buttons
+        
+            for (int i = 0; i < rows; i++) {
+            for(int j = 0; j < columns; j++){
+                matrix[i][j] = new JButton();
+                matrix[i][j].addActionListener(control);
+                matrix[i][j].setActionCommand(Integer.toString(i) + seperate + Integer.toString(j));
+                this.add(matrix[i][j]);}}}
+    
+    public void Visible() {
+        this.setVisible(true);}}
