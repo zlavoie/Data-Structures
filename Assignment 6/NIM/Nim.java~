@@ -1,0 +1,40 @@
+import java.util.*;
+
+public class Nim{
+  int stones; //number of stones
+  boolean done; //is the game finished?
+  Board game;
+  Scanner input;
+  
+  public Nim(){//default constructor
+    input=new Scanner(System.in);
+    do //until the number of stones entered is 6 or more
+    {
+      System.out.print("How many stones (at least 6): ");
+      stones = input.nextInt();
+    }while (stones<6);
+    
+    String first; //computer or person
+    do//who goes first:computer or person
+    {
+      System.out.print("who goes first -- c for computer, p for person: ");
+      first = (input.next()).toLowerCase();
+    }while (!(first.equals("c")||first.equals("p")));
+    done=false;
+    
+    if(first.equals("p")){ //if then human goes first, make the first move
+      int num;//num of stones to be removed
+      do{
+        System.out.print("\nHow many stones would you like to take?: ");
+        num = input.nextInt();
+      }while (num>=3||num<=0);
+      
+      stones=stones-num ; //adjust the pile
+      System.out.println("Stones remaining: "+stones);
+      if(stones==0) //game over(will not happen with 6+ stones)
+      {
+        done=true;
+        System.out.println("Computer wins, player loses");}}
+    game=bew Board(stones, 0); //Begin the game with new number of stones
+    playGame();
+  }
